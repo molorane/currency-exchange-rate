@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-public class ExchangeRatesApi {
+public class ExchangeRatesApiConfig {
 
     @Value("${service.access_key}")
     private String accessKey;
@@ -16,6 +16,4 @@ public class ExchangeRatesApi {
     private String urlHistorical;
     @Value("${service.url.convert}")
     private String urlConvert;
-    @Value("${update-rates.cron}")
-    private String scheduleinterval;
 }

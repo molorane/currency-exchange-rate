@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Exchangeservice1Application {
+public class ExchangeService1Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Exchangeservice1Application.class, args);
+		SpringApplication.run(ExchangeService1Application.class, args);
 	}
 
 }

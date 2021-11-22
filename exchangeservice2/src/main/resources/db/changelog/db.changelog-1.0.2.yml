@@ -1,0 +1,33 @@
+databaseChangeLog:
+    - changeSet:
+        id:  1.0.1.currency-table
+        author:  Mothusi Molorane
+        changes:
+           - createTable:
+                tableName:  rates
+                columns:
+                    - column:
+                        name:  exchange_rate_id
+                        type:  INT
+                        constraints:
+                          foreignKeyName: fk_exchange_rate_id
+                          references: exchange_rate(id)
+                    - column:
+                        name: currency_value
+                        type: VARCHAR(20)
+                        constraints:
+                           nullable: false
+                    - column:
+                        name: rates_key
+                        type: INT
+                        constraints:
+                          nullable: false
+    - changeSet:
+        id: 2.0.1.addPrimaryKey_rates
+        author: Mothusi Molorane
+        changes:
+          - addPrimaryKey:
+              columnNames: exchange_rate_id, rates_key
+              constraintName: pk_rates
+              tableName: rates
+              validate: true
