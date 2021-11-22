@@ -67,13 +67,8 @@ public class FetchRates {
                 .flatMap( x -> x.entrySet().stream())
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-
         exchangeRate.setRates(rates);
-
         exchangeRateRepository.save(exchangeRate);
-
-        System.out.println("Now is "+ LocalDateTime.now());
-        System.out.println(currency);
     }
 
     public HashMap<Currency, String> map(Map.Entry<String, String> entry) {
