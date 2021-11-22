@@ -55,6 +55,7 @@ public class FetchRates {
 
         ExchangeRate exchangeRate = new ExchangeRate();
         exchangeRate.setBase(currency);
+        assert exchangeRateDto != null;
         exchangeRate.setSuccess(exchangeRateDto.isSuccess());
         exchangeRate.setDate(exchangeRateDto.getDate());
         exchangeRate.setLocalDateTime(exchangeRateDto.getTimestamp().toLocalDateTime());
@@ -73,11 +74,7 @@ public class FetchRates {
 
     public HashMap<Currency, String> map(Map.Entry<String, String> entry) {
         HashMap<Currency, String> map = new HashMap<>();
-
-        Currency key = currencyRepository.findCurrencyByName(entry.getKey());
-
-        map.put(key, entry.getValue());
-
+        map.put(currencyRepository.findCurrencyByName(entry.getKey()), entry.getValue());
         return map;
     }
 }
