@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: exchangeservice1-service
+  cloud:
+    config:
+      fail-fast: true # the application will not run if it can't reach the config-service
+      username: user
+      password: 1234
+      retry:
+        max-attempts: 2
+        initial-interval: 2000 # milli-seconds
+---
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+    activate:
+      on-profile: local

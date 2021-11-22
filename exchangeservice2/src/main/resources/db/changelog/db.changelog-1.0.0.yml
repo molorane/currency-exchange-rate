@@ -1,0 +1,22 @@
+databaseChangeLog:
+    - changeSet:
+        id:  1.0.1.role-table
+        author:  Mothusi Molorane
+        changes:
+           - createTable:
+                tableName:  app_role
+                columns:
+                    - column:
+                        name:  id
+                        type:  BIGSERIAL
+                        autoIncrement: true
+                        constraints:
+                            primaryKey: true
+                    - column:
+                        name: name
+                        type: varchar(50)
+                        constraints:
+                           nullable: false
+                    - column:
+                        name: desc
+                        type: TEXT

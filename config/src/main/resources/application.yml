@@ -1,0 +1,13 @@
+server:
+  port: 8888 #the port where the config-server will be accessible
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///C:/microservice-git/currency-exchange-rate
+  security:
+    user:
+      password: 1234 # the password which apps will use to access its configurations
