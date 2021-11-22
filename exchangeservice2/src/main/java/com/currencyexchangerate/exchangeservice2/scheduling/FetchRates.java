@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 @EnableScheduling
 public class FetchRates {
 
-    private final ExchangeRatesApiConfig  exchangeRatesApiConfig;
     private final CurrencyRepository currencyRepository;
     private final ExchangeRateRepository exchangeRateRepository;
     private final UriService uriService;
@@ -31,8 +30,7 @@ public class FetchRates {
 
     private Currency currency;
 
-    public FetchRates(ExchangeRatesApiConfig exchangeRatesApiConfig, CurrencyRepository currencyRepository, ExchangeRateRepository exchangeRateRepository, UriService uriService, WebClient.Builder webClientBuilder) {
-        this.exchangeRatesApiConfig = exchangeRatesApiConfig;
+    public FetchRates(CurrencyRepository currencyRepository, ExchangeRateRepository exchangeRateRepository, UriService uriService, WebClient.Builder webClientBuilder) {
         this.currencyRepository = currencyRepository;
         this.exchangeRateRepository = exchangeRateRepository;
         this.uriService = uriService;
