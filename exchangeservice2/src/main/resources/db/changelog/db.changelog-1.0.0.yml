@@ -1,10 +1,10 @@
 databaseChangeLog:
     - changeSet:
-        id:  1.0.1.role-table
+        id:  1.0.1.currency-table
         author:  Mothusi Molorane
         changes:
            - createTable:
-                tableName:  app_role
+                tableName:  currency
                 columns:
                     - column:
                         name:  id
@@ -17,6 +17,18 @@ databaseChangeLog:
                         type: varchar(50)
                         constraints:
                            nullable: false
-                    - column:
-                        name: desc
-                        type: TEXT
+    - changeSet:
+          id: 1.0.1.load-currencies
+          author: Mothusi Molorane
+          changes:
+              - loadData:
+                    columns:
+                        - column:
+                              name: name
+                              type: string
+                    encoding: UTF-8
+                    file: ../data/currencies.csv
+                    relativeToChangelogFile: true
+                    separator: ','
+                    tableName: currency
+                    usePreparedStatements: true
