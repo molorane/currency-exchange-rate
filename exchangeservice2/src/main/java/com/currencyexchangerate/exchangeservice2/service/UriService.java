@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 public class UriService {
 
     private ExchangeRatesApiConfig exchangeRatesApiConfig;
+    private URIBuilder uriBuilder;
 
     public URIBuilder getBuilder() {
-        URIBuilder builder = new URIBuilder();
-        builder.setScheme("http")
+        uriBuilder.setScheme("http")
                 .setHost(exchangeRatesApiConfig.getUrlLatest())
                 .addParameter("access_key", exchangeRatesApiConfig.getAccessKey());
-        return builder;
+        return uriBuilder;
     }
 
     public String getBuilder(String symbols) {
