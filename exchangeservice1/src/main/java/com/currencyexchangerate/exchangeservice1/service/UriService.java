@@ -1,23 +1,23 @@
 package com.currencyexchangerate.exchangeservice1.service;
 
 import com.currencyexchangerate.exchangeservice1.config.ExchangeRatesApiConfig;
+import lombok.AllArgsConstructor;
 import org.apache.http.client.utils.URIBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class UriService {
 
-    @Autowired
     private ExchangeRatesApiConfig exchangeRatesApiConfig;
-
-    private URIBuilder builder = new URIBuilder();
+    private URIBuilder uriBuilder;
 
     public URIBuilder getBuilder() {
-        builder.setScheme("http")
+        uriBuilder.setScheme("http")
                 .setHost(exchangeRatesApiConfig.getUrlLatest())
                 .addParameter("access_key", exchangeRatesApiConfig.getAccessKey());
-        return builder;
+        return uriBuilder;
     }
 
     public String getBuilder(String symbols) {

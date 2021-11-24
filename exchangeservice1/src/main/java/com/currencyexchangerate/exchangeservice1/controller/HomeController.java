@@ -1,10 +1,8 @@
 package com.currencyexchangerate.exchangeservice1.controller;
 
-import com.currencyexchangerate.exchangeservice1.config.ExchangeRatesApiConfig;
 import com.currencyexchangerate.exchangeservice1.model.ExchangeRate;
 import com.currencyexchangerate.exchangeservice1.service.UriService;
 import lombok.AllArgsConstructor;
-import org.apache.http.client.utils.URIBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

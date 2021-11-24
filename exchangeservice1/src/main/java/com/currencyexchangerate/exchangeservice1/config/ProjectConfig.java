@@ -1,5 +1,6 @@
 package com.currencyexchangerate.exchangeservice1.config;
 
+import org.apache.http.client.utils.URIBuilder;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,5 +19,10 @@ public class ProjectConfig {
     @LoadBalanced
     public WebClient.Builder loadBalancedWebClientBuilder(){
         return WebClient.builder();
+    }
+
+    @Bean
+    public URIBuilder uriBuilder(){
+        return new URIBuilder();
     }
 }
