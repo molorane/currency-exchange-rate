@@ -1,6 +1,6 @@
 spring:
   application:
-    name: exchangeservice2-service
+    name: xrate-service2
   cloud:
     config:
       fail-fast: true # the application will not run if it can't reach the config-service

@@ -30,14 +30,14 @@ public class HistoricRatesController {
 
     @GetMapping("latest/")
     @CircuitBreaker(name = "service1", fallbackMethod = "xrateFallback")
-    @RateLimiter(name = "service1", fallbackMethod = "rateLimiterfallback")
-    @Retry(name = "retryService1", fallbackMethod = "retryfallback")
+    @RateLimiter(name = "service1", fallbackMethod = "rateLimiterFallback")
+    @Retry(name = "retryService1", fallbackMethod = "retryFallback")
     @Bulkhead(name = "bulkheadService1", fallbackMethod = "bulkHeadFallback")
     public ResponseEntity<?> latest(){
 
         ExchangeRate exchangeRate = loadBalancedWebClientBuilder.build()
                 .get()
-                .uri("http://exchangeservice2-service/xrateservice2/historical/latest")
+                .uri("http://xrate-service2/xrateservice2/historical/latest")
                 .retrieve()
                 .bodyToMono(ExchangeRate.class)
                 .block();
@@ -45,7 +45,13 @@ public class HistoricRatesController {
         return new ResponseEntity<>(exchangeRate, HttpStatus.ACCEPTED);
     }
 
-    public  ResponseEntity<?> rateLimiterfallback(Throwable t) {
+    public  ResponseEntity<?> xrateFallback(Throwable t) {
+        String str = "Service 2 is down, cause - "+t.toString();
+        logger.error(str);
+        return new ResponseEntity<>( "Service 2 is down", HttpStatus.ACCEPTED);
+    }
+
+    public  ResponseEntity<?> rateLimiterFallback(Throwable t) {
         String str = "Inside rateLimiterfallback, cause - "+t.toString();
         logger.error(str);
         return new ResponseEntity<>(str, HttpStatus.ACCEPTED);
@@ -57,16 +63,10 @@ public class HistoricRatesController {
         return new ResponseEntity<>( "Inside bulkHeadFallback method. Some error occurred while calling service2", HttpStatus.ACCEPTED);
     }
 
-    public  ResponseEntity<?> retryfallback(Throwable t) {
+    public  ResponseEntity<?> retryFallback(Throwable t) {
         String str = "Inside retryfallback, cause - "+t.toString();
         logger.error(str);
         return new ResponseEntity<>( "Inside retryfallback method. Some error occurred while calling service2", HttpStatus.ACCEPTED);
-    }
-
-    public  ResponseEntity<?> xrateFallback(Throwable t) {
-        String str = "Service 2 is down, cause - "+t.toString();
-        logger.error(str);
-        return new ResponseEntity<>( "Service 2 is down", HttpStatus.ACCEPTED);
     }
 
 }
