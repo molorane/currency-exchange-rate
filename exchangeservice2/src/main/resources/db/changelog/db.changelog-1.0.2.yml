@@ -7,10 +7,10 @@ databaseChangeLog:
                 tableName:  rates
                 columns:
                     - column:
-                        name:  exchange_rate_id
+                        name:  xrate_id
                         type:  INT
                         constraints:
-                          foreignKeyName: fk_exchange_rate_id
+                          foreignKeyName: fk_xrate_id
                           references: exchange_rate(id)
                     - column:
                         name: currency_value
@@ -27,7 +27,7 @@ databaseChangeLog:
         author: Mothusi Molorane
         changes:
           - addPrimaryKey:
-              columnNames: exchange_rate_id, rates_key
+              columnNames: xrate_id, rates_key
               constraintName: pk_rates
               tableName: rates
               validate: true

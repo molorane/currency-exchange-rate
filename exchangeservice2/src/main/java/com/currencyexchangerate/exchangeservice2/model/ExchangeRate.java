@@ -29,7 +29,7 @@ public class ExchangeRate {
 
     @ElementCollection
     @CollectionTable(name = "rates")
-    @MapKeyColumn(name = "currency_id")
+    @MapKeyColumn(name = "xrate_id")
     @Column(name = "currency_value")
     private Map<Currency, String> rates;
 
